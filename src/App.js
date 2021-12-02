@@ -7,12 +7,20 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { PublicRoute } from "./routes/PublicRoute";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { currentThunk } from "./redux/auth/thunks";
+
 
 const isAuth = false;
 
 
 export default function App() {
-    
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(currentThunk());
+      })
+
    return (
         <div className="App">
            <header className="App-header">
