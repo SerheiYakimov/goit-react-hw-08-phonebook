@@ -9,17 +9,24 @@ import { PrivateRoute } from "./routes/PrivateRoute";
 import { PublicRoute } from "./routes/PublicRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { currentThunk } from "./redux/auth/thunks";
+import { currentThunk, logoutThunk } from "./redux/auth/thunks";
 
 
 const isAuth = false;
 
 
 export default function App() {
+    
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(currentThunk());
-      })
+    }, [dispatch]);
+
+    const handleLogout = () => {
+        console.log('Click')
+        dispatch(logoutThunk());
+    }
 
    return (
         <div className="App">
@@ -37,6 +44,9 @@ export default function App() {
                        </li>
                        <li>
                            <Link to="/register">Register</Link>
+                       </li>
+                       <li>
+                           <button type="button" onClick={handleLogout}>Log Out</button>
                        </li>
                    </ul>
                </nav>

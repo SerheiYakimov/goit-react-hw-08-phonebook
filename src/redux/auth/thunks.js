@@ -5,22 +5,22 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 const signupUser = '/users/signup';
 const userLogin = '/users/login';
 const userLogout = '/users/logout';
-const CurrentUser = '/users/current';
+const currentUser = '/users/current';
 
 const token = {
     set(token) {
-        axios.defaults.headers.common.Autorization = `Bearer ${token}`;
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     },
     unset() {
-        axios.defaults.headers.common.Autorization = '';
+        axios.defaults.headers.common.Authorization = '';
     }
-}
+};
 
 export const singupThunk = createAsyncThunk('users/signup', async(user, { rejectWithValue }) => {
     try {
-        const response = await axios.post(signupUser, user);
-        console.log(response.data);
-        return response.data;
+        const { data } = await axios.post(signupUser, user);
+        token.set(data.token);
+        return data;
     } catch (err) {
         return rejectWithValue({ error: err.message });
     }
@@ -28,30 +28,38 @@ export const singupThunk = createAsyncThunk('users/signup', async(user, { reject
 
 export const loginThunk = createAsyncThunk('users/login', async (user, { rejectWithValue }) => {
     try {
-        const response = await axios.post(userLogin, user);
-        console.log(response.data);
-        return response.data;
+        const { data } = await axios.post(userLogin, user);
+        token.set(data.token);
+        return data;
     } catch (err) {
         return rejectWithValue({ error: err.message });
     }
 });
 
-// export const userLogoutThunk = createAsyncThunk('users/logout', async (user, { rejectWithValue }) => {
-//     try {
-//         const response = await axios.post(userLogout, user);
-//         return response.data;
-//     } catch (error) {
-//         return rejectWithValue(error);
-//     }
-// });
+export const logoutThunk = createAsyncThunk('users/logout', async (_, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.post(userLogout);
+        token.set(data.token);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
 
-export const currentThunk = createAsyncThunk('users/current', async (_, { rejectWithValue, getState }) => {
-    const state = getState();
-    console.log('store', state.auth.token);
-    // try {
-    //     const response = await axios.get(CurrentUser);
-    //     return response.data;
-    // } catch (error) {
-    //     return rejectWithValue(error);
+export const currentThunk = createAsyncThunk('users/current', async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistToken = state.auth.token;
+    if (persistToken === null) {
+        console.log('токена нет')
+        return thunkAPI.rejectWithValue();
+    };
+    token.set(persistToken);
+    try {
+        const { data } = await axios.get(currentUser);
+         console.log('Data', data);
+        return data;
+    } catch (err) {}
+    // {
+    //     return rejectWithValue({ error: err.message });
     // }
 });
