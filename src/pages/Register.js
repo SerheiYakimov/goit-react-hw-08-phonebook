@@ -43,6 +43,7 @@ export function Register() {
             email,
             password
         }
+    
         dispatch(singupThunk(user));
         reset();
     };
@@ -96,7 +97,7 @@ export function Register() {
                             id="email"
                             label="Email Address"
                             name="email"
-                            helperText="example: DenBraun@gmail.com"
+                            helperText="example: DenBraun@mail.com"
                             autoComplete="email"
                             color="secondary"
                             onChange={handleChange}
@@ -127,40 +128,7 @@ export function Register() {
                     </Box>
                 </Box>
             </Container>
-        </ThemeProvider>
-
-
-            {/* <h2>Register Form</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    placeholder="name"
-                    onChange={handleChange}
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                    required
-                />
-                <br />
-                <input
-                    type="mail"
-                    name="email"
-                    value={email}
-                    placeholder="email"
-                    onChange={handleChange}
-                />
-                <br />
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="password"
-                    onChange={handleChange}
-                />
-                <br />
-                <button type="submit">Register</button>
-            </form> */}
+            </ThemeProvider>
         </>
     )
 }

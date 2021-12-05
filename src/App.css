@@ -4,7 +4,7 @@
   margin-right: auto;
   text-align: center;
   padding: 10px;
-  background-color: rgb(214, 144, 15);
+  background-color: rgb(156, 39, 176);
   border-radius: 10px;
   box-shadow: 5;
   text-decoration: none;
@@ -35,5 +35,5 @@
 }
 
 .activeLink {
-  color: #d415c4;
+  color: #f0a210;
 }

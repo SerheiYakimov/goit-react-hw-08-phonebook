@@ -14,6 +14,7 @@ import { currentThunk } from "./redux/auth/thunks";
 import { useSelector } from "react-redux";
 import { userIsAuth, getIsCurrentUser } from "./redux/auth/auth-selectors";
 import { UserMenu } from "./components/UserMenu/UserMenu";
+import { Toaster } from 'react-hot-toast';
 
 
 const setActive = ({ isActive }) => isActive ? 'activeLink' : 'link';
@@ -59,9 +60,13 @@ export default function App() {
                     <Route path="/register" element={<PublicRoute isAuth={isAuth} component={Register} navigateTo="/contacts" restricted/>} />
                     <Route path='/*' element={<NotFound />}></Route>
                 </Routes>
-                </main>
+               </main>
+               < Toaster 
+                    position ="top-center"
+                    reverseOrder={false}
+                />
             </div>
-        )
+       )
     );
 }
 

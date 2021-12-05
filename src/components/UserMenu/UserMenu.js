@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserName } from "../../redux/auth/auth-selectors";
 import { logoutThunk } from "../../redux/auth/thunks";
 import s from '../UserMenu/UserMenu.module.css'
+import toast from 'react-hot-toast';
 
 export function UserMenu() {
 
@@ -10,6 +11,7 @@ export function UserMenu() {
     const handleLogout = () => {
         // console.log('Click')
         dispatch(logoutThunk());
+        toast.success('You are signed out!')
     }
 
     return (

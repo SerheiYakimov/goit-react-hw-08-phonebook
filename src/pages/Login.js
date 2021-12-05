@@ -18,6 +18,7 @@ export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
+    
     const dispatch = useDispatch();
     
     const handleChange = (e) => {
@@ -35,13 +36,16 @@ export function Login() {
     
     const handleSubmit = (e) => {
             e.preventDefault();
-            const user = {
-                email,
-                password
-            }
-            dispatch(loginThunk(user));
-            reset();
+        const user = {
+            email,
+            password
         };
+        
+        dispatch(loginThunk(user));
+        reset();
+        
+    };
+    
     const reset = () => {
         setEmail('');
         setPassword('');
@@ -78,7 +82,7 @@ export function Login() {
                             id="email"
                             label="Email Address"
                             name="email"
-                            helperText="example: DenBraun@gmail.com"
+                            helperText="example: DenBraun@mail.com"
                             autoComplete="email"
                             color="secondary"
                             onChange={handleChange}
@@ -111,32 +115,6 @@ export function Login() {
             </Container>
         </ThemeProvider>
     );
-    
-    // return (
-    //     <>
-    //         <h2>Login Form</h2>
-    //         <form onSubmit={handleSubmit}>
-    //             <input
-    //                 type="mail"
-    //                 name="email"
-    //                 value={email}
-    //                 placeholder="email"
-    //                 onChange={handleChange}
-    //             />
-    //             <br />
-    //             <input
-    //                 type="password"
-    //                 name="password"
-    //                 value={password}
-    //                 placeholder="password"
-    //                 onChange={handleChange}
-    //             />
-    //             <br />
-    //             <button type="submit">Register</button>
-    //         </form>
-    //     </>
-    // )
-
 }
 
 

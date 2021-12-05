@@ -3,7 +3,8 @@ import PropsType from "prop-types";
 import s from "../Form/Form.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
-import { addThunkContact } from '../../redux/phonebook/phonebook-operations'
+import { addThunkContact } from '../../redux/phonebook/phonebook-operations';
+import toast from 'react-hot-toast';
 // import { useAddContactMutation } from "../../redux/auth/slices"; - rtk q
 
 
@@ -43,8 +44,8 @@ export default function Form() {
         dispatch(addThunkContact(contact)); 
       // addContact(contact); - rtk q  тут отправляем на бек через хук ртк
     };
-
     resetForm();
+    toast.success('Сontact successfully created!')
   }
 
   const resetForm = () => {
