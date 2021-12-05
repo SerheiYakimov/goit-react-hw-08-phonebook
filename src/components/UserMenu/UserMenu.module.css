@@ -1,0 +1,21 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  color: rgb(22, 12, 170);
+  margin: 0;
+}
+
+.button {
+  width: 80px;
+  height: 20px;
+  margin-left: 10px;
+  color: darkgoldenrod;
+  background-color: cornsilk;
+  border: 1px solid rgba(75, 67, 67, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getUserName } from "../../redux/auth/auth-selectors";
 import { logoutThunk } from "../../redux/auth/thunks";
+import s from '../UserMenu/UserMenu.module.css'
 
 export function UserMenu() {
 
@@ -12,9 +13,9 @@ export function UserMenu() {
     }
 
     return (
-        <div>
-            <p>Hello, {name}!</p>
-            <button type="button" onClick={handleLogout}>Log Out</button>
+        <div className={s.menu}>
+            <p className={s.text}>Hello, {name}!</p>
+            <button type="button" className={s.button} onClick={handleLogout}>Log Out</button>
         </div>
     )
 }

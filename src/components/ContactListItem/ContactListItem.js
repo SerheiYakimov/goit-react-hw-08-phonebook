@@ -16,6 +16,7 @@ export function ContactListItem({ id, name, number }) {
       </p>
       <button
         type="submit"
+        className={s.button}
         onClick={() => dispatch(deleteThunkContact(id))}
         // onClick={() => deleteContact(id)} - rtk quwery
       >
