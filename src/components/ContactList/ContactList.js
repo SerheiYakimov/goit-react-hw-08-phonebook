@@ -6,9 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
 import { getAllContacts } from "../../redux/phonebook/phonebook-selectors";
 import { getThunkContacts } from '../../redux/phonebook/phonebook-operations';
-
+// import { useFetchContactsQuery } from "../../redux/auth/slices"; - rtk q
 
 export function ContactList() {
+  // const { data } = useFetchContactsQuery(); - rtk q
+  // const contacts = data;
+  
   const contacts = useSelector(getAllContacts);
   const dispatch = useDispatch();
   

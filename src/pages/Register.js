@@ -6,7 +6,9 @@ export function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const dispatch = useDispatch();
+    
     const handleChange = (e) => {
         switch (e.target.name) {
             case "name":
@@ -48,6 +50,9 @@ export function Register() {
                     value={name}
                     placeholder="name"
                     onChange={handleChange}
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                    required
                 />
                 <br />
                 <input

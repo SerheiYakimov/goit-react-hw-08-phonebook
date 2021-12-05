@@ -5,7 +5,9 @@ import { loginThunk } from '../redux/auth/thunks';
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
     const dispatch = useDispatch();
+    
     const handleChange = (e) => {
         switch (e.target.name) {
             case "email":

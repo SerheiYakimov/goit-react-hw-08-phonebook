@@ -17,5 +17,22 @@
 
 .nav {
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
+  text-decoration: none;
+  list-style: none;
+  margin: 10px;
+}
+
+.nav-link {
+  margin: 10px;
+}
+
+.link {
+  color: azure;
+  margin: 20px;
+}
+
+.activeLink {
+  color: #d415c4;
 }

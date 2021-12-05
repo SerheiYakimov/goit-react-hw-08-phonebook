@@ -12,13 +12,13 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist';
-
 import storage from 'redux-persist/lib/storage';
+// import { contactsApiSlice  } from "./auth/slices"; - rtk q
 
 const AuthPersistConfig = {
   key: 'authToken',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'user'],
 };
 
 const ContactsPersistConfig = {
@@ -35,12 +35,14 @@ const contactsReducer = combineReducers({
 
 const authPersistReducer = persistReducer(AuthPersistConfig, AuthReducer);
 const contactsPersistReducer = persistReducer(ContactsPersistConfig, contactsReducer);
+// const contactsPersistReducer = persistReducer(ContactsPersistConfig, contactsApiSlice); - rtk q
 
 
 export const store = configureStore({
   reducer: {
     auth: authPersistReducer,
     contacts: contactsPersistReducer,
+    // [contactsApiSlice.reducerPath]: contactsApiSlice.reducer, - rtk q
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -48,6 +50,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+  // }).concat(contactsApiSlice.middleware), - rtk q
 });
 
 export const persistor = persistStore(store);

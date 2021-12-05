@@ -1,11 +1,11 @@
-import { Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom";
 
-export function PublicRoute({ isAuth, component: Component }) {
+export function PublicRoute({ isAuth, restricted = false, navigateTo = '/contacts', component: Component }) {
+    const shouldNavigate = isAuth && restricted;
+
     return (
         <>
-            <h1>Public</h1>
-            {isAuth ? <Navigate to="/"/> : <Component />}
-            
+            {shouldNavigate ? <Navigate to={navigateTo} /> : <Component />}
         </>
     )
 }

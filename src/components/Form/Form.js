@@ -1,15 +1,20 @@
 import { useState } from "react";
 import PropsType from "prop-types";
 import s from "../Form/Form.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
 import { addThunkContact } from '../../redux/phonebook/phonebook-operations'
+// import { useAddContactMutation } from "../../redux/auth/slices"; - rtk q
+
 
 export default function Form() {
   const [name, SetName] = useState('');
   const [number, SetNumber] = useState('');
+  // достаем из хука addContact - rtk q
+  // const [addContact] = useAddContactMutation();
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  
     
   const handleChange = (e) => {
       const { name, value } = e.target;
@@ -34,9 +39,10 @@ export default function Form() {
     
     if (contacts.find((el) => el.name === contact.name)) {
         alert(`${contact.name} is already in contacts`);
-      } else {
-        dispatch(addThunkContact(contact));
-      };
+    } else {
+        dispatch(addThunkContact(contact)); 
+      // addContact(contact); - rtk q  тут отправляем на бек через хук ртк
+    };
 
     resetForm();
   }

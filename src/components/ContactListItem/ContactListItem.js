@@ -2,9 +2,12 @@ import PropsType from "prop-types";
 import s from "../ContactListItem/ContactListItem.module.css";
 import { useDispatch } from "react-redux";
 import { deleteThunkContact } from "../../redux/phonebook/phonebook-operations";
+// import { useDeleteContactMutation } from "../../redux/auth/slices"; - rtk q
+
 
 export function ContactListItem({ id, name, number }) {
   const dispatch = useDispatch();
+  // const [deleteContact] = useDeleteContactMutation(); - rtk q
   
   return (
     <li className={s.list}>
@@ -14,7 +17,7 @@ export function ContactListItem({ id, name, number }) {
       <button
         type="submit"
         onClick={() => dispatch(deleteThunkContact(id))}
-        className={s.button}
+        // onClick={() => deleteContact(id)} - rtk quwery
       >
         Delete
       </button>

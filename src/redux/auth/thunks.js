@@ -56,7 +56,7 @@ export const currentThunk = createAsyncThunk('users/current', async (_, thunkAPI
     token.set(persistToken);
     try {
         const { data } = await axios.get(currentUser);
-         console.log('Data', data);
+        //  console.log('Data', data);
         return data;
     } catch (err) {}
     // {
