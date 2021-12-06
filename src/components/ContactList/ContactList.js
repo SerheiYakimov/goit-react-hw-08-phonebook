@@ -21,15 +21,20 @@ export function ContactList() {
     
   return (
     <ul className={s.list}>
-      {contacts.map(({ id, name, number }) => (
-          <ContactListItem
-            key={id}
-            id={id}
-            name={name}
-            number={number}
-          />
+     
+      {contacts.length === 0 ?
+        (<p>No contacts!</p>)
+        : (
+          contacts.map(({ id, name, number }) => (
+            <ContactListItem
+              key={id}
+              id={id}
+              name={name}
+              number={number}
+            />
+          ))
         )
-      )}
+      }
     </ul>
   );
 }
