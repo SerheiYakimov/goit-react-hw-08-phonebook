@@ -101,7 +101,6 @@ export function Register() {
                             autoComplete="email"
                             color="secondary"
                             onChange={handleChange}
-                            autoFocus
                         />
                         <TextField
                             margin="normal"
